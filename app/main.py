@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.database import neo4j_db
-
+from app.routes import attack
 app = FastAPI()
 
 @app.get("/test-db")
@@ -11,3 +11,5 @@ def test_db():
 @app.post("/add-device")
 def create_device(name: str):
     return add_device(name)
+
+app.include_router(attack.router)
